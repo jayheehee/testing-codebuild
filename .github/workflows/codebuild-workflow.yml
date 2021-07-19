@@ -33,15 +33,15 @@ jobs:
           project-name: test-codebuild
           buildspec-override: .github/workflows/buildspec.yml
           env-vars-for-codebuild: |
-            AWS_DEFAULT_REGION,
-            AWS_ACCOUNT_ID,
-            IMAGE_REPO_NAME,
-            IMAGE_TAG
-        env:
-          AWS_DEFAULT_REGION: us-east-2
-          AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
-          IMAGE_REPO_NAME: testing-gh-actions
-          IMAGE_TAG: $ {{ github.sha }}
+#            AWS_DEFAULT_REGION,
+#            AWS_ACCOUNT_ID,
+#            IMAGE_REPO_NAME,
+#            IMAGE_TAG
+#        env:
+#          AWS_DEFAULT_REGION: us-east-2
+#          AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
+#          IMAGE_REPO_NAME: testing-gh-actions
+#          IMAGE_TAG: $ {{ github.sha }}
           #role-name = codebuild-test-codebuild-gh-actions-service-role
           ##
 
