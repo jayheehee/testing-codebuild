@@ -1,4 +1,7 @@
 version: 0.2
+env:
+  variables:
+    CODEBUILD_SOURCE_VERSION: "a6c798d24cf00fb6224afc9647c33edf970ef69e" #pandas
 phases:
   pre_build:
     commands:
