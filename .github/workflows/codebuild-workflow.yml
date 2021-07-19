@@ -41,7 +41,7 @@ jobs:
           AWS_DEFAULT_REGION: us-east-2
           AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
           IMAGE_REPO_NAME: testing-gh-actions
-          IMAGE_TAG: $ {{ github.sha }} #
+          IMAGE_TAG: $ {{ github.sha }}
 
 
 
