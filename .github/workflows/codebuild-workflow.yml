@@ -10,44 +10,43 @@ on:
 
 jobs:
   Build-and-Push-Docker-Image:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       contents: read
       packages: write
     if: contains(github.event.head_commit.message, '[docker to ecr]')
     steps:
 
-#      - name: Checkout repository
-#        uses: actions/checkout@v2 #DELETE LATER
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Run CodeBuild
-        uses: aws-actions/aws-codebuild-run-build@v1.0.3
-        with:
-          project-name: test-codebuild-2
-          buildspec-override: .github/workflows/buildspec.yml
-          env-vars-for-codebuild: |
-            AWS_DEFAULT_REGION,
-            AWS_ACCOUNT_ID,
-            IMAGE_REPO_NAME,
-            IMAGE_TAG
-        env:
-          AWS_DEFAULT_REGION: us-east-2
-          AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
-          IMAGE_REPO_NAME: testing-gh-actions
-          IMAGE_TAG: ${{ github.sha }}
+      #      - name: Configure AWS credentials
+      #        uses: aws-actions/configure-aws-credentials@v1
+      #        with:
+      #          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #          aws-region: us-east-2
+
+      #      - name: Run CodeBuild
+      #        uses: aws-actions/aws-codebuild-run-build@v1.0.3
+      #        with:
+      #          project-name: test-codebuild-2
+      #          buildspec-override: .github/workflows/buildspec.yml
+      #          env-vars-for-codebuild: |
+      #            AWS_DEFAULT_REGION,
+      #            AWS_ACCOUNT_ID,
+      #            IMAGE_REPO_NAME,
+      #            IMAGE_TAG
+      #        env:
+      #          AWS_DEFAULT_REGION: us-east-2
+      #          AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
+      #          IMAGE_REPO_NAME: testing-gh-actions
+      #          IMAGE_TAG: ${{ github.sha }}
 
       - name: Building docker image #just for test
         env:
-#          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }} #change to branch name
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-#
 
 
