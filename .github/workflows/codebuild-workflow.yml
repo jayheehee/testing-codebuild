@@ -42,7 +42,7 @@ jobs:
           AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
           IMAGE_REPO_NAME: testing-gh-actions
           IMAGE_TAG: ${{ github.sha }}
-          CODEBUILD_SOURCE_VERSION: a6c798d24cf00fb6224afc9647c33edf970ef69e
+          CODEBUILD_RESOLVED_SOURCE_VERSION: a6c798d24cf00fb6224afc9647c33edf970ef69e
 
 #      - name: Building docker image #just for test
 #        env:
