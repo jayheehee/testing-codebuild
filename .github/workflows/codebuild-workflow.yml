@@ -14,7 +14,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-#    if: contains(github.event.head_commit.message, '[docker to ecr]')
+    if: contains(github.event.head_commit.message, '[docker to ecr]')
     steps:
 
 #      - name: Checkout repository
@@ -24,7 +24,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           aws-region: us-east-2
 
       - name: Run CodeBuild
@@ -42,7 +41,12 @@ jobs:
           AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
           IMAGE_REPO_NAME: testing-gh-actions
           IMAGE_TAG: ${{ github.sha }}
-          #role-name = codebuild-test-codebuild-gh-actions-service-role
-          ###
+
+      - name: Building docker image #just for test
+        env:
+#          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }} #change to branch name
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
 
 
