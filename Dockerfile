@@ -1,11 +1,12 @@
-##syntax=docker/dockerfile:1
-#
-#FROM ubuntu:latest
-#
-#WORKDIR /app
+#syntax=docker/dockerfile:1
+
+FROM ubuntu:latest
+
+WORKDIR /app
 #
 #COPY requirements.txt .
 #
+RUN echo "Other branch"
 #RUN apt-get update \
 #    && apt-get install -y python3-pip
 #RUN mkdir -p /databricks/jars
