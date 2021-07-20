@@ -6,7 +6,7 @@ WORKDIR /app
 #
 #COPY requirements.txt .
 #
-RUN echo "Other branch bad"
+RUN echo "Other branch good"
 #RUN apt-get update \
 #    && apt-get install -y python3-pip
 #RUN mkdir -p /databricks/jars
